@@ -31,7 +31,7 @@ public class Livro implements Item{
     @Override
     public void reservar() throws ItemIndisponivelException{
         if (!disponivel){
-            throw new ItemIndisponivelException("O livro %s não está disponível!");
+            throw new ItemIndisponivelException("O livro " + getTitulo() +  " não está disponível!");
         }
         disponivel = false;
     }
