@@ -14,41 +14,24 @@ public class Livro implements Item{
         this.disponivel = true;
     }
 
-    //Gets e sets 
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-    }
-
     public String getAutor(){
         return autor;
     }
-
-    public void setAutor(String autor){
-        this.autor = autor;
-    }
     
+    @Override
     public String getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
-        this.editora = editora;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
-    
     @Override
     public String getTitulo(){
         return titulo;
     }
-
+    
     @Override
     public void reservar() throws ItemIndisponivelException{
-        if (disponivel = false){
-            throw new ItemIndisponivelException("O livro " + this.titulo + " não está disponível!");
+        if (!disponivel){
+            throw new ItemIndisponivelException("O livro %s não está disponível!");
         }
         disponivel = false;
     }
