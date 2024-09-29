@@ -16,10 +16,6 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public List<Item> getItensReservados() {
         return itensReservados;
     }
@@ -27,13 +23,12 @@ public class Usuario {
     public void reservarItem(Item item) throws ItemIndisponivelException{
         item.reservar();
         itensReservados.add(item);
-        System.out.println("Item" + item.getTitulo() + " reservado por " + nome +  " no dia: " + LocalDate.now());
+        System.out.println("Item " + item.getTitulo() + " reservado por " + nome +  " no dia: " + LocalDate.now());
     }
 
     public void devolverItem(Item item){
         item.devolver();
         itensReservados.remove(item);
-        System.out.println("Item" + item.getTitulo() + " devolvido por " + nome +  " no dia: " + LocalDate.now());
+        System.out.println("Item " + item.getTitulo() + " devolvido por " + nome +  " no dia: " + LocalDate.now());
     }
 }
-
