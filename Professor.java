@@ -9,7 +9,7 @@ public class Professor extends Usuario {
 
     @Override
     public void reservarItem(Item item) throws ItemIndisponivelException{
-        if(getItensReservados().size() >= max_reservas){
+        if(getEmprestimos().size() >= max_reservas){
             throw new ItemIndisponivelException("O professor já atingiu o número máximo de reservas");
         }
         super.reservarItem(item);
