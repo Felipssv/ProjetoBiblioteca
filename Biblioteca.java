@@ -34,9 +34,9 @@ public class Biblioteca {
         System.out.println("Item não encontrado!");
     }
     public void devolverItem(Usuario usuario, String titulo){
-        for(Item item : usuario.getItensReservados()){
-            if (item.getTitulo() == (titulo)){
-                usuario.devolverItem(item);
+        for(Emprestimo emprestimo : usuario.getEmprestimos()){
+            if (emprestimo.getItem().getTitulo() == (titulo)){
+                usuario.devolverItem(emprestimo.getItem());
                 return;
             }
         }
