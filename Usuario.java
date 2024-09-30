@@ -5,30 +5,45 @@ import java.time.LocalDate;
 
 public class Usuario {
     private String nome;
-    private List<Item> itensReservados;
+    private List<Emprestimo> emprestimos;
 
     public Usuario(String nome){
         this.nome = nome;
-        this.itensReservados = new ArrayList<>();
+        this.emprestimos = new ArrayList<>();
     }
 
     public String getNome() {
         return nome;
     }
 
-    public List<Item> getItensReservados() {
-        return itensReservados;
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
     }
 
     public void reservarItem(Item item) throws ItemIndisponivelException{
         item.reservar();
-        itensReservados.add(item);
-        System.out.println("Item " + item.getTitulo() + " reservado por " + nome +  " no dia: " + LocalDate.now());
+        Emprestimo emprestimo = new Emprestimo(item);
+        emprestimos.add(emprestimo);
+        System.out.println("Item " + item.getTitulo() + " reservado por " + nome +  " no dia: " + LocalDate.now() + " devolver até "
+         + emprestimo.getDataEntrega());
     }
 
     public void devolverItem(Item item){
-        item.devolver();
-        itensReservados.remove(item);
-        System.out.println("Item " + item.getTitulo() + " devolvido por " + nome +  " no dia: " + LocalDate.now());
+        for (Emprestimo emprestimo : emprestimos){
+            if (emprestimo.getItem() == item){
+                item.devolver();
+                emprestimos.remove(emprestimo);
+
+                if(emprestimo.isAtrasado()){
+                    double multa = emprestimo.calcularMulta();
+                    System.out.println("Devolução atrasada, você deve pagar uma multa de R$ " + multa);
+                }
+                else{
+                    System.out.println("Item devolvido por " + nome + " com sucesso! Volte sempre!!");
+                }
+                return;
+            }
+        }
+        System.out.println("O item " + item.getTitulo() + " não está emprestado!");
     }
 }
