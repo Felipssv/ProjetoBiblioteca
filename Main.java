@@ -28,6 +28,12 @@ public class Main {
         // Tentativa de emprestar item indisponível
         biblioteca.reservarItem(aluno1, "O Senhor dos Anéis");
 
+        // Simulação de devolução sem multa
+        biblioteca.devolverItem(professor1, "O Senhor dos Anéis");
+
+        // Simulação de devolução com multa (alterar data)
+        biblioteca.devolverItem(aluno1, "1984");
+
         // Devolvendo item
         biblioteca.devolverItem(professor1, "O Senhor dos Anéis");
 
